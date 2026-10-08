@@ -1,0 +1,41 @@
+// Codespace for the Nixty tasks. Keep it identical to ../nix/devcontainer.json except for
+// name, workspaceFolder, onCreateCommand's argument and openFiles.
+{
+  "name": "Nixty",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:5.2.1-22-trixie",
+  "features": {
+    "ghcr.io/devcontainers/features/nix:1.4.0": {
+      "version": "2.34.4",
+      "extraNixConfig": "experimental-features = nix-command flakes,warn-dirty = false,flake-registry = "
+    }
+  },
+  // Only this tool's folder is shown, and terminals start in it.
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}/nixty",
+  // Runs in the prebuild: warms the Nix store (see the script).
+  "onCreateCommand": "bash ${containerWorkspaceFolder}/../.devcontainer/shared/on-create.sh nixty",
+  "customizations": {
+    "codespaces": {
+      // Relative to the repository root, not to workspaceFolder.
+      "openFiles": ["nixty/README.md", "nixty/nixty.ts"]
+    },
+    "vscode": {
+      "extensions": [
+        "jnoortheen.nix-ide@0.5.13",
+        "-GitHub.copilot",
+        "-GitHub.copilot-chat",
+        "-dbaeumer.vscode-eslint"
+      ],
+      "settings": {
+        // AI assistants are not allowed during the survey. Defaults only: a participant can turn them back on.
+        "chat.disableAIFeatures": true,
+        "github.copilot.enable": { "*": false },
+        "nix.enableLanguageServer": true,
+        "nix.serverPath": "nixd",
+        "nix.serverSettings": { "nixd": { "formatting": { "command": ["nixfmt"] } } },
+        // The repository root is the folder above; don't ask to open it.
+        "git.openRepositoryInParentFolders": "never",
+        "workbench.editorAssociations": { "*.md": "vscode.markdown.preview.editor" }
+      }
+    }
+  }
+}

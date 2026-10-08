@@ -1,0 +1,8 @@
+result
+result-*
+node_modules/
+
+# The answer key (solutions, PE10/PE11 starters) and its check stay local: this repo is public.
+/PLAN.md
+/tasks/
+/check.sh
