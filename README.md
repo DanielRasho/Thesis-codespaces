@@ -7,8 +7,8 @@ it, and paste the whole file back into the survey. Nothing done in the codespace
 
 | Tool | Opens | Link |
 |---|---|---|
-| Nix | `nix/`, file `flake.nix` | <https://codespaces.new/DanielRasho/Thesis-survey?quickstart=1&devcontainer_path=.devcontainer/nix/devcontainer.json> |
-| Nixty | `nixty/`, file `nixty.ts` | <https://codespaces.new/DanielRasho/Thesis-survey?quickstart=1&devcontainer_path=.devcontainer/nixty/devcontainer.json> |
+| Nix | `nix/`, file `flake.nix` | <https://codespaces.new/DanielRasho/Thesis-codespaces?quickstart=1&devcontainer_path=.devcontainer/nix/devcontainer.json> |
+| Nixty | `nixty/`, file `nixty.ts` | <https://codespaces.new/DanielRasho/Thesis-codespaces?quickstart=1&devcontainer_path=.devcontainer/nixty/devcontainer.json> |
 
 `quickstart=1` resumes the participant's existing codespace instead of creating a second one.
 
@@ -81,17 +81,17 @@ The `devcontainer-lock.json` files are written by the devcontainer CLI; commit t
 AI features are off by default (`chat.disableAIFeatures`, `github.copilot.enable`, and the Copilot
 extensions excluded). A participant can turn them back on; the survey rules forbid them anyway.
 
-## Warm-up and prebuilds
+## Warm-up
 
-`.devcontainer/shared/on-create.sh` runs as `onCreateCommand`, so it runs inside the Codespaces
-prebuild. It installs nixd and nixfmt, builds the package, and enters `nix develop` once, so the
-Nix store already holds nixpkgs, stdenv, makeWrapper, curl, jq and bashInteractive. For Nixty it
-also runs `npm ci`, installs the `nixty` CLI globally and builds with `nixty build`, which warms
-the type-check. It fails if it leaves the tool's folder dirty.
+`.devcontainer/shared/on-create.sh` runs as `onCreateCommand`, when a participant's codespace is
+created; the editor opens once it finishes. It installs nixd and nixfmt, builds the package, and
+enters `nix develop` once, so the Nix store already holds nixpkgs, stdenv, makeWrapper, curl, jq and
+bashInteractive. For Nixty it also runs `npm ci`, installs the `nixty` CLI globally and builds with
+`nixty build`, which warms the type-check. It fails if it leaves the tool's folder dirty.
 
-Prebuilds are configured in the repo settings (Settings → Codespaces → Set up prebuild), **once
-per devcontainer config**: branch `main`, trigger "On configuration change", one region (the
-closest to the participants). They run on GitHub Actions and are billed to the repo owner.
+There are **no prebuilds**: creating a codespace was fast enough without them, and the survey has
+participants open it on the screen before the first task, so start-up time isn't counted in any
+task. (Prebuilds were tried and spent 20+ minutes in GitHub's snapshot step.)
 
 ## Testing locally
 

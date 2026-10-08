@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 # onCreateCommand of both configs: `on-create.sh nix` or `on-create.sh nixty`.
 #
-# Runs inside the Codespaces prebuild, so everything a participant's first build, run or dev shell
-# needs is already in the Nix store when they open the codespace. Same steps for both tools except
-# the Nixty-specific ones.
+# Runs when the codespace is created (no prebuilds), before the editor opens, so everything a
+# participant's first build, run or dev shell needs is already in the Nix store. Same steps for both
+# tools except the Nixty-specific ones.
 set -euo pipefail
 
 tool="${1:?usage: on-create.sh nix|nixty}"
