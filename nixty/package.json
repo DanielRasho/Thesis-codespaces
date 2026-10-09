@@ -3,6 +3,6 @@
   "private": true,
   "type": "module",
   "devDependencies": {
-    "nixty-lib": "0.1.1"
+    "nixty-lib": "0.1.2"
   }
 }
