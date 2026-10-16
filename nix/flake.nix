@@ -19,7 +19,7 @@
           );
         in
         {
-          default = pkgs.stdenv.mkDerivation {
+          weathercli = pkgs.stdenv.mkDerivation {
             pname = "weathercli";
             version = "1.0.0";
 

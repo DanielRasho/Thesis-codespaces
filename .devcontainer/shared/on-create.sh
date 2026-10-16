@@ -32,9 +32,9 @@ nix profile add "github:NixOS/nixpkgs/$rev#nixd" "github:NixOS/nixpkgs/$rev#nixf
 case "$tool" in
   nix)
     # nixpkgs, stdenv, makeWrapper, curl, jq.
-    nix build --no-link
+    nix build .#weathercli --no-link
     # bashInteractive (from the locked nixpkgs) and the build environment, used by `nix develop`.
-    nix develop --command true
+    nix develop .#weathercli --command true
     ;;
   nixty)
     npm ci --no-audit --no-fund

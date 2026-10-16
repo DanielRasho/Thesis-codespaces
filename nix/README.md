@@ -13,10 +13,11 @@
 Guarda el archivo (`Ctrl+S`) y, en una terminal de este Codespace (menú *Terminal → New Terminal*), ejecuta:
 
 ```sh
-nix build                  # construye el paquete en ./result
+nix build .#weathercli     # construye el paquete en ./result
 ./result/bin/weathercli    # ejecuta el programa construido
-nix run                    # construye y ejecuta el programa
-nix develop                # entra a la dev shell (sal con: exit)
+nix run .#weathercli       # construye y ejecuta el programa
+nix flake show             # lista lo que define el flake
+nix develop                # entra a la dev shell `default` (sal con: exit)
 ```
 
 `weathercli` imprime la URL que consulta y luego el clima.

@@ -100,7 +100,7 @@ With Docker running:
 ```sh
 npx @devcontainers/cli up --workspace-folder . --config .devcontainer/nix/devcontainer.json
 npx @devcontainers/cli exec --workspace-folder . --config .devcontainer/nix/devcontainer.json \
-  bash -lc 'nix build && ./result/bin/weathercli && nixd --version && git status --short'
+  bash -lc 'nix build .#weathercli && ./result/bin/weathercli && nixd --version && git status --short'
 ```
 
 Same with `.devcontainer/nixty/devcontainer.json` and `nixty build weathercli`. `on-create.sh`
@@ -117,7 +117,7 @@ After changing the tasks, the flakes, the lock files or `nixty-lib`, run (needs 
 
 ```sh
 ./check.sh                                         # this repo only
-./check.sh --yaml <survey>/server/content/nix.yaml # also: the Nix starters equal the survey's code
+./check.sh --yaml <survey>/server/content/nix.yaml # also: the starters equal nix.yaml's and nixty.yaml's code
 ```
 
 For every tool × task × {starter, solution} it copies the tool's folder to a temporary git repo,

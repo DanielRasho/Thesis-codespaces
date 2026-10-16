@@ -31,8 +31,8 @@
                 nativeBuildInputs = [ pkgs.makeWrapper ];
                 dontConfigure = true;
                 dontBuild = true;
-                installPhase = "\n            mkdir -p $out/bin $out/share/weathercli\n            install -m755 weathercli.sh $out/bin/weathercli\n            install -m644 ${pkgs.writeText "weathercli-config.json" "{\"city\":\"Tokyo\",\"units\":\"metric\",\"format\":\"compact\"}"} $out/share/weathercli/config.json\n        ";
-                postFixup = "for f in \"$out\"/bin/*; do\n  wrapProgram \"$f\" --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.curl pkgs.jq ]}\ndone\n\n            wrapProgram $out/bin/weathercli                 --set-default WEATHERCLI_CONFIG $out/share/weathercli/config.json\n        ";
+                installPhase = "\n                mkdir -p $out/bin $out/share/weathercli\n                install -m755 weathercli.sh $out/bin/weathercli\n                install -m644 ${pkgs.writeText "weathercli-config.json" "{\"city\":\"Tokyo\",\"units\":\"metric\",\"format\":\"compact\"}"} $out/share/weathercli/config.json\n            ";
+                postFixup = "for f in \"$out\"/bin/*; do\n  wrapProgram \"$f\" --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.curl pkgs.jq ]}\ndone\n\n                wrapProgram $out/bin/weathercli                     --set-default WEATHERCLI_CONFIG $out/share/weathercli/config.json\n            ";
               };
             };
           };
